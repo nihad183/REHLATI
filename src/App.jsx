@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import DestinationGallery from "./components/DestinationGallery";
 import AboutUs from "./components/AboutUs";
@@ -15,8 +15,9 @@ export default function App() {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
+
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/destination/:name" element={<DestinationGallery />} />
@@ -26,9 +27,7 @@ export default function App() {
         <Route path="/TropicalAdventure" element={<TropicalAdventure />} />
         <Route path="/offers" element={<SpecialOffers />} />
         <Route path="/offers/:id" element={<OfferDetails />} />
-
-
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
