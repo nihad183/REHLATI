@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { offers } from "../data/offersData";
 
 export default function SpecialOffers() {
   const navigate = useNavigate();
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       {/* ===== HERO ===== */}

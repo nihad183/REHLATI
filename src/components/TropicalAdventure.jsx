@@ -29,7 +29,7 @@ export default function TropicalAdventure() {
           className="absolute w-full h-full object-cover brightness-50"
         />
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
           className="absolute top-6 left-6 bg-yellow-200 hover:bg-yellow-300 text-[#3B2B1F] px-4 py-2 rounded-full font-bold shadow-lg z-30"
         >
           ← Back

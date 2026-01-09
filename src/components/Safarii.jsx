@@ -2,32 +2,32 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-import safari1 from "../assets/safari1.jpg";
-import safari2 from "../assets/safari2.jpg";
-import safari3 from "../assets/safari3.jpg";
-import safari4 from "../assets/safari4.jpg";
-import safari5 from "../assets/safari5.jpg";
-import safari6 from "../assets/safari6.jpg";
-import safari7 from "../assets/safari7.jpg";
-import safari8 from "../assets/safari8.jpg";
-import safari9 from "../assets/safari9.jpg";
-import safari10 from "../assets/safari10.jpg";
-
 export default function Safari() {
   const navigate = useNavigate();
 
+  // ======= IMAGES CLOUDINARY =======
+  
   const images = [
-    safari1, safari2, safari3, safari4, safari5, safari7, safari8, safari9, safari10
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992385/safari6_tfk1e0.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992368/safari5_mrqfjs.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992376/safari7_julrjo.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992376/safari8_i0kpgf.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992377/safari9_skvowh.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992382/safari10_kmkvfm.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992359/safari1_vlmju0.jpg ",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992358/safari2_zpe3vi.jpg ",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992368/safari3_cr7i4m.jpg ",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992402/safari4_fmvyau.jpg",
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(4); // safari6 أولًا
+  const [currentIndex, setCurrentIndex] = useState(6); 
 
   const prevImage = () => {
-    setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   const nextImage = () => {
-    setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   useEffect(() => {
@@ -40,12 +40,13 @@ export default function Safari() {
       {/* HERO */}
       <section className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] flex items-center justify-center">
         <img
-          src={safari6}
+          src={images[currentIndex]}
           alt="Safari Hero"
           className="absolute w-full h-full object-cover brightness-50"
+          loading="lazy"
         />
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
           className="absolute top-6 left-6 bg-[#D9CBA3] hover:bg-[#C7B58A] text-[#4B3B2B] px-4 py-2 rounded-full font-bold shadow-lg transition flex items-center gap-2 z-30"
         >
           ← Back
@@ -83,6 +84,7 @@ export default function Safari() {
                 key={idx}
                 src={img}
                 alt={`Safari ${idx + 1}`}
+                loading="lazy"
                 className={`absolute w-64 h-80 object-cover rounded-xl transition-all duration-500
                   ${idx === currentIndex ? "opacity-100 z-20 scale-105" : "opacity-0 z-10 scale-95"}
                 `}

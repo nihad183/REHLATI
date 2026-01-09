@@ -1,6 +1,7 @@
-import HeroImage from "../assets/hero.png"; 
-import backgroundhero from "../assets/background.jpg"; 
 import { FiArrowDown } from "react-icons/fi";
+
+const heroImage = "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992295/hero_wmt3hx.jpg";
+const backgroundHero = "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992248/background_a6fefp.jpg";
 
 export default function Hero() {
   return (
@@ -8,9 +9,10 @@ export default function Hero() {
 
       {/* Background */}
       <img
-        src={backgroundhero}
+        src={backgroundHero}
         alt="Hero Background"
         className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy" 
       />
       <div className="absolute inset-0 bg-white/80"></div>
 
@@ -40,9 +42,10 @@ export default function Hero() {
             <div className="absolute -inset-3 sm:-inset-4 md:-inset-4 rounded-full border-4 border-blue-400 border-dashed animate-spin-slow"></div>
             <div className="w-full h-full rounded-full overflow-hidden relative z-10">
               <img
-                src={HeroImage}
+                src={heroImage} 
                 alt="Travel"
                 className="w-full h-full object-cover"
+                loading="lazy" 
               />
             </div>
           </div>

@@ -2,46 +2,42 @@ import React, { useState, useMemo } from "react";
 import { MdLocationOn, MdSearch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-/* ====== IMPORT IMAGES ====== */
-// Default images
-import tokyoImg from "../assets/Tokyo.jpg";
-import parisImg from "../assets/paris2.jpg";
-import dubaiImg from "../assets/Dubai.jpg";
-import londonImg from "../assets/London.jpg";
-
-// Paris
-import france1 from "../assets/france.jpg";
-import france2 from "../assets/france2.jpg";
-import paris1 from "../assets/paris1.jpg";
-import france3 from "../assets/france3.jpg";
-
-// Tokyo
-import tokyo1 from "../assets/tokyo1.jpg";
-import tokyo2 from "../assets/tokyo2.jpg";
-import tokyo3 from "../assets/tokyo3.jpg";
-import tokyo4 from "../assets/tokyo4.jpg";
-
-// Dubai
-import dubai1 from "../assets/dubai1.jpg";
-import dubai2 from "../assets/dubai2.jpg";
-import dubai3 from "../assets/dubai3.jpg";
-import dubai4 from "../assets/dubai4.jpg";
-
-// London
-import London1 from "../assets/London1.jpg";
-import London2 from "../assets/London2.jpg";
-import London3 from "../assets/London3.jpg";
-import London4 from "../assets/London4.jpg";
-
-/* ====== DATA ====== */
 const destinations = ["Paris", "Tokyo", "Dubai", "London"];
-const defaultImages = [tokyoImg, parisImg, dubaiImg, londonImg];
+
 const destinationImages = {
-  Paris: [france1, france2, paris1, france3],
-  Tokyo: [tokyo1, tokyo2, tokyo3, tokyo4],
-  Dubai: [dubai1, dubai2, dubai3, dubai4],
-  London: [London1, London2, London3, London4],
+  Paris: [
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992359/paris1_lm7az7.jpg", 
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992314/france3_nnyiqc.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992304/france_nqpojg.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992290/france2_qiobwt.jpg",
+  ],
+  Tokyo: [
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992427/tokyo3_cdki8i.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992415/tokyo1_v1jgmm.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992414/tokyo4_r4t0cv.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992405/tokyo2_k4mmhz.jpg",
+  ],
+  Dubai: [
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992283/dubai4_jx1m9j.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992279/dubai3_svbkpi.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992471/dubai2_lc07ja.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992469/dubai1_vccn4i.jpg",
+  ],
+  London: [
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992333/London1_dcozfg.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992332/London2_vypsfg.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992327/London4_wp5dxf.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992323/London3_bgxg84.jpg",
+  ],
 };
+
+// Default images عند عدم اختيار وجهة
+const defaultImages = [
+  "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992398/Tokyo_wci8fi.jpg", 
+  "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992350/paris2_fyw1q7.jpg",
+  "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992276/Dubai_criorr.jpg",
+  "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992319/London_sv2cou.jpg",
+];
 
 export default function DestinationSection() {
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -50,7 +46,6 @@ export default function DestinationSection() {
 
   const isMobile = window.innerWidth < 768;
 
-  // 🔹 Lazy calculation of current images
   const currentImages = useMemo(() => {
     if (!selectedDestination) return defaultImages;
     return destinationImages[selectedDestination] || defaultImages;
@@ -112,7 +107,7 @@ export default function DestinationSection() {
             <img
               src={img}
               alt="destination"
-              loading="lazy" // 🔥 Lazy load for faster performance
+              loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

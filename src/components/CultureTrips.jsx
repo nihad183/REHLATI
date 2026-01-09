@@ -1,32 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // استدعاء useNavigate للعودة
-
-
-// images
-import culture1 from "../assets/culture1.jpg";
-import culture2 from "../assets/culture2.jpg";
-import culture3 from "../assets/culture3.jpg";
-import culture4 from "../assets/culture4.jpg";
-import culture5 from "../assets/culture5.jpg";
-import culture6 from "../assets/culture6.jpg";
-import culture7 from "../assets/culture7.jpg";
-import culture8 from "../assets/culture8.jpg";
-import culture9 from "../assets/culture9.jpg";
-import culture10 from "../assets/culture10.jpg";
-import culture11 from "../assets/culture11.jpg";
-import culture12 from "../assets/culture12.jpg";
-
-const images = [
-  culture1, culture2, culture3, culture4, culture5,
-  culture6, culture7, culture8, culture9, culture10, culture11, culture12
-];
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CultureTrips() {
-      const navigate = useNavigate();
-        useEffect(() => {
-          window.scrollTo(0, 0);
-        }, []);
-      
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const heroimg ="https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992254/culture1_khdq4o.jpg";
+  const images = [
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992254/culture1_khdq4o.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992269/culture7_ve7lqm.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992263/culture2_qepmak.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992260/culture8_lgxadp.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992270/culture3_p0i2pr.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992263/culture9_wszp7r.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992255/culture4_vpxsad.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992277/culture10_gcxz5c.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992253/culture5_ye3oc7.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992281/culture11_jnktmc.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992262/culture6_iup0tr.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992465/culture12_kncvug.jpg",
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -34,12 +29,13 @@ export default function CultureTrips() {
       {/* ===== HERO ===== */}
       <section className="relative h-[50vh] flex items-center justify-center">
         <img
-          src={culture1}
+          src={heroimg}
           className="absolute w-full h-full object-cover brightness-50"
           alt=""
+          loading="lazy"
         />
-          <button
-          onClick={() => navigate("/")}
+        <button
+          onClick={() => navigate(-1)}
           className="absolute top-6 left-6 bg-yellow-200 hover:bg-yellow-300 text-[#3B2B1F] px-4 py-2 rounded-full font-bold shadow-lg transition flex items-center gap-2 z-30"
         >
           ← Back
@@ -51,15 +47,7 @@ export default function CultureTrips() {
 
       {/* ===== PINTEREST / MASONRY GALLERY ===== */}
       <section className="max-w-7xl mx-auto px-3 py-10">
-        <div
-          className="
-            columns-2
-            sm:columns-2
-            md:columns-3
-            lg:columns-4
-            gap-4
-          "
-        >
+        <div className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
           {images.map((img, index) => (
             <div
               key={index}
@@ -68,13 +56,8 @@ export default function CultureTrips() {
               <img
                 src={img}
                 alt={`culture-${index}`}
-                className="
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-700
-                  group-hover:scale-110
-                "
+                loading="lazy" 
+                className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </div>
           ))}

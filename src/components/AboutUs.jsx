@@ -1,12 +1,6 @@
-import React, { useEffect } from "react"; // أضف useEffect
+import React, { useEffect } from "react";
 import { FaShieldAlt, FaClock, FaDollarSign } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; 
-
-import hero from "../assets/travel4.jpg";
-import travel1 from "../assets/travel1.jpg";
-import travel2 from "../assets/travel2.jpg";
-import travel3 from "../assets/travel3.jpg";
-import office from "../assets/office1.jpg";
+import { useNavigate } from "react-router-dom";
 
 // =================== HERO STAT COMPONENT ===================
 function Stat({ number, label }) {
@@ -48,16 +42,30 @@ export default function About() {
     window.scrollTo(0, 0);
   }, []);
 
+  
+  const hero = "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992442/travel4_t5klah.jpg";
+  const travelImages = [
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992430/Travel1_nfg4r6.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992432/Travel2_lqaab7.jpg",
+    "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992451/Travel3_qmosq4.jpg",
+  ];
+  const office = "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992340/office1_yhuarl.jpg";
+
   return (
     <div className="bg-[#041C2F] text-white">
 
       {/* ================= HERO SECTION ================= */}
       <section className="relative overflow-hidden">
         <div className="relative h-[60vh] sm:h-[75vh] lg:h-[85vh]">
-          <img src={hero} alt="Hero" className="w-full h-full object-cover" />
+          <img
+            src={hero}
+            alt="Hero"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
 
           <button
-            onClick={() => navigate(-1)} 
+            onClick={() => navigate(-1)}
             className="
               absolute top-6 left-6
               bg-cyan-500 hover:bg-cyan-600
@@ -103,55 +111,18 @@ export default function About() {
           </div>
 
           <div className="relative w-full h-[300px] sm:h-[350px] lg:h-[420px] flex justify-center items-center mt-6 lg:mt-0">
-
-            <img
-              src={travel1}
-              alt=""
-              className="
-                absolute
-                w-56 h-80
-                object-cover
-                rounded-xl
-                border-4 border-white
-                shadow-lg
-                opacity-90
-                -translate-x-40
-                scale-95
-                z-10
-              "
-            />
-
-            <img
-              src={travel2}
-              alt=""
-              className="
-                absolute
-                w-64 h-88
-                object-cover
-                rounded-xl
-                border-4 border-white
-                shadow-xl
-                -translate-x-6
-                scale-105
-                z-20
-              "
-            />
-
-            <img
-              src={travel3}
-              alt=""
-              className="
-                absolute
-                w-72 h-96
-                object-cover
-                rounded-xl
-                border-4 border-white
-                shadow-2xl
-                translate-x-20
-                scale-105
-                z-30
-              "
-            />
+            {travelImages.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`Travel ${i + 1}`}
+                loading="lazy"
+                className={`absolute rounded-xl border-4 border-white shadow-lg
+                  ${i === 0 ? "w-56 h-80 -translate-x-40 scale-95 z-10" :
+                   i === 1 ? "w-64 h-88 -translate-x-6 scale-105 z-20" :
+                   "w-72 h-96 translate-x-20 scale-105 z-30"}`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -164,6 +135,7 @@ export default function About() {
             <img
               src={office}
               alt="Office"
+              loading="lazy"
               className="w-full h-64 sm:h-80 md:h-[420px] object-cover rounded-2xl border-4 border-white shadow-2xl"
             />
           </div>

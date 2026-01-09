@@ -1,36 +1,30 @@
 import React from "react";
 import { FaPlane, FaStar } from "react-icons/fa";
 
-/* ===== IMPORT IMAGES ===== */
-import Tokyo from "../assets/Tokyo.jpg";
-import france from "../assets/france.jpg";
-import Dubai from "../assets/Dubai.jpg";
-import London from "../assets/London.jpg";
-
 const trips = [
   {
-    img: Tokyo,
+    img: "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992398/Tokyo_wci8fi.jpg", 
     location: "Tokyo, Japan",
     price: "$746k",
     days: "7 Day Trip",
     rating: 4.5,
   },
   {
-    img: france,
+    img: "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992304/france_nqpojg.jpg", 
     location: "France, Paris",
     price: "$746k",
     days: "7 Day Trip",
     rating: 4.5,
   },
   {
-    img: Dubai,
+    img: "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992276/Dubai_criorr.jpg", 
     location: "Dubai, UAE",
     price: "$746k",
     days: "7 Day Trip",
     rating: 4.5,
   },
   {
-    img: London,
+    img: "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992319/London_sv2cou.jpg", 
     location: "UK, London",
     price: "$746k",
     days: "7 Day Trip",
@@ -41,7 +35,6 @@ const trips = [
 export default function VacationPlan() {
   return (
     <section className="px-6 py-16 bg-gray-50">
-      {/* عنوان القسم */}
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold">
           Best <span className="font-normal">Vacation Plan</span>
@@ -52,18 +45,18 @@ export default function VacationPlan() {
         </p>
       </div>
 
-      {/* البطاقات */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
         {trips.map((trip, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 flex flex-col"
           >
-            {/* الصورة مربعة */}
+           
             <div className="w-full aspect-square">
               <img
-                src={trip.img}
+                src={trip.img} 
                 alt={trip.location}
+                loading="lazy" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -90,8 +83,6 @@ export default function VacationPlan() {
           </div>
         ))}
       </div>
-
-      
     </section>
   );
 }

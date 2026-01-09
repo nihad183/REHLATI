@@ -1,7 +1,7 @@
-import TravelImage from "../assets/travel.png";
 import { motion } from "framer-motion";
 import { MdPlace, MdCalendarToday, MdAttachMoney } from "react-icons/md";
 
+const TravelImage = "https://res.cloudinary.com/dsz0x4wlj/image/upload/v1767992425/travel_u3fn5c.png";
 export default function BookingSection() {
   return (
     <section className="w-full px-5 md:px-10 py-20 bg-gray-50">
@@ -13,6 +13,7 @@ export default function BookingSection() {
             <img
               src={TravelImage}
               alt="Travel Destination"
+              loading="lazy"
               className="w-full h-full object-cover shadow-lg"
               style={{
                 borderRadius: "50px 10px 50px 10px",
