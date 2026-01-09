@@ -3,7 +3,7 @@ import { MdLocationOn, MdSearch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 /* ====== IMPORT IMAGES ====== */
-// default images
+// Default images
 import tokyoImg from "../assets/Tokyo.jpg";
 import parisImg from "../assets/paris2.jpg";
 import dubaiImg from "../assets/Dubai.jpg";
@@ -50,15 +50,11 @@ export default function DestinationSection() {
 
   const isMobile = window.innerWidth < 768;
 
-  // استخدام useMemo لتصفية الصور بشكل أسرع
+  // 🔹 Lazy calculation of current images
   const currentImages = useMemo(() => {
     if (!selectedDestination) return defaultImages;
     return destinationImages[selectedDestination] || defaultImages;
   }, [selectedDestination]);
-
-  // الحد الأقصى للصور المعروضة أولًا
-  const MAX_IMAGES = 6;
-  const visibleImages = currentImages.slice(0, MAX_IMAGES);
 
   return (
     <section className="w-full px-5 md:px-10 py-24 bg-gray-50 flex flex-col items-center gap-8">
@@ -73,7 +69,7 @@ export default function DestinationSection() {
         We have more than <span className="font-semibold">2000</span> destinations
       </p>
 
-      {/* Search */}
+      {/* Search Dropdown */}
       <div className="relative w-full max-w-lg">
         <button
           onClick={() => setOpenDropdown(!openDropdown)}
@@ -104,9 +100,9 @@ export default function DestinationSection() {
         )}
       </div>
 
-      {/* Image Boxes */}
+      {/* Image Gallery */}
       <div className="w-full max-w-6xl flex flex-wrap justify-center gap-5 mt-14">
-        {visibleImages.map((img, idx) => (
+        {currentImages.map((img, idx) => (
           <div
             key={idx}
             className={`relative w-36 h-52 md:w-48 md:h-64 rounded-2xl overflow-hidden shadow-xl transform
@@ -116,7 +112,7 @@ export default function DestinationSection() {
             <img
               src={img}
               alt="destination"
-              loading="lazy" // 🔥 مهم للأداء
+              loading="lazy" // 🔥 Lazy load for faster performance
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
@@ -124,7 +120,7 @@ export default function DestinationSection() {
         ))}
       </div>
 
-      {/* See more */}
+      {/* See More Button */}
       {selectedDestination && (
         <button
           onClick={() => navigate(`/destination/${selectedDestination}`)}
