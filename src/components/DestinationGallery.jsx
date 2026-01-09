@@ -1,30 +1,27 @@
-import React from "react"; // <--- هذا مهم!
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 
-
-
 /* ===== IMPORT IMAGES ===== */
-// Paris
 import paris1 from "../assets/paris1.jpg";
 import paris2 from "../assets/paris2.jpg";
 import france from "../assets/france.jpg";
 import france1 from "../assets/france1.jpg";
 import france2 from "../assets/france2.jpg";
 import france3 from "../assets/france3.jpg";
-// Tokyo
+
 import tokyo1 from "../assets/tokyo1.jpg";
 import tokyo2 from "../assets/tokyo2.jpg";
 import tokyo3 from "../assets/tokyo3.jpg";
 import tokyo4 from "../assets/tokyo4.jpg";
 import tokyo5 from "../assets/tokyo5.jpg";
 import tokyo6 from "../assets/tokyo6.jpg";
-// Dubai
+
 import dubai1 from "../assets/dubai1.jpg";
 import dubai2 from "../assets/dubai2.jpg";
 import dubai3 from "../assets/dubai3.jpg";
 import dubai4 from "../assets/dubai4.jpg";
-// London
+
 import london1 from "../assets/London1.jpg";
 import london2 from "../assets/London2.jpg";
 import london3 from "../assets/London3.jpg";
@@ -43,7 +40,6 @@ export default function DestinationGallery() {
   const navigate = useNavigate();
   const images = galleries[name] || [];
 
-  // اجعل الصفحة تبدأ من الأعلى عند الدخول
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -52,16 +48,13 @@ export default function DestinationGallery() {
     <div className="min-h-screen bg-gray-50">
 
       {/* Navbar داخلي */}
-      <div className="flex items-center justify-center  px-6 py-4 shadow-md bg-white sticky top-0 z-50">
-        {/* سهم الرجوع على اليسار */}
+      <div className="flex items-center justify-center px-6 py-4 shadow-md bg-white sticky top-0 z-50">
         <button
           onClick={() => navigate(-1)}
           className="absolute left-6 text-gray-700 hover:text-gray-900"
         >
           <MdArrowBack size={28} />
         </button>
-
-        {/* اسم الوجهة في الوسط */}
         <h1 className="text-xl font-bold text-gray-800">{name}</h1>
       </div>
 
@@ -78,6 +71,7 @@ export default function DestinationGallery() {
                 key={i}
                 src={img}
                 alt={name}
+                loading="lazy" // 🔥 lazy loading للأداء
                 className="rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
               />
             ))}

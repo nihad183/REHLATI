@@ -1,9 +1,8 @@
-import { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { MdLocationOn, MdSearch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-/* ====== IMPORT IMAGES (src/assets) ====== */
-
+/* ====== IMPORT IMAGES ====== */
 // default images
 import tokyoImg from "../assets/Tokyo.jpg";
 import parisImg from "../assets/paris2.jpg";
@@ -35,11 +34,8 @@ import London3 from "../assets/London3.jpg";
 import London4 from "../assets/London4.jpg";
 
 /* ====== DATA ====== */
-
 const destinations = ["Paris", "Tokyo", "Dubai", "London"];
-
 const defaultImages = [tokyoImg, parisImg, dubaiImg, londonImg];
-
 const destinationImages = {
   Paris: [france1, france2, paris1, france3],
   Tokyo: [tokyo1, tokyo2, tokyo3, tokyo4],
@@ -50,9 +46,19 @@ const destinationImages = {
 export default function DestinationSection() {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [selectedDestination, setSelectedDestination] = useState("");
-  const [currentImages, setCurrentImages] = useState(defaultImages);
-
   const navigate = useNavigate();
+
+  const isMobile = window.innerWidth < 768;
+
+  // استخدام useMemo لتصفية الصور بشكل أسرع
+  const currentImages = useMemo(() => {
+    if (!selectedDestination) return defaultImages;
+    return destinationImages[selectedDestination] || defaultImages;
+  }, [selectedDestination]);
+
+  // الحد الأقصى للصور المعروضة أولًا
+  const MAX_IMAGES = 6;
+  const visibleImages = currentImages.slice(0, MAX_IMAGES);
 
   return (
     <section className="w-full px-5 md:px-10 py-24 bg-gray-50 flex flex-col items-center gap-8">
@@ -87,7 +93,6 @@ export default function DestinationSection() {
                 key={index}
                 onClick={() => {
                   setSelectedDestination(dest);
-                  setCurrentImages(destinationImages[dest] || defaultImages);
                   setOpenDropdown(false);
                 }}
                 className="px-5 py-3 hover:bg-gray-100 cursor-pointer"
@@ -101,16 +106,17 @@ export default function DestinationSection() {
 
       {/* Image Boxes */}
       <div className="w-full max-w-6xl flex flex-wrap justify-center gap-5 mt-14">
-        {currentImages.map((img, idx) => (
+        {visibleImages.map((img, idx) => (
           <div
             key={idx}
             className={`relative w-36 h-52 md:w-48 md:h-64 rounded-2xl overflow-hidden shadow-xl transform
-              ${idx % 2 === 0 ? "rotate-[6deg]" : "rotate-[-6deg]"}
+              ${!isMobile && (idx % 2 === 0 ? "rotate-[6deg]" : "rotate-[-6deg]")}
               hover:rotate-0 hover:scale-105 transition-all duration-300`}
           >
             <img
               src={img}
               alt="destination"
+              loading="lazy" // 🔥 مهم للأداء
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
